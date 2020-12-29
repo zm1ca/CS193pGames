@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ksj-U4-28a">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Set-->
+        <scene sceneID="EaA-QD-ebi">
+            <objects>
+                <viewController id="ksj-U4-28a" customClass="GameOfSetVC" customModule="CS193pGames" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eY0-Yz-elI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalCompressionResistancePriority="1000" distribution="fillProportionally" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="QdN-12-KeD" userLabel="Info Labels Stack View">
+                                <rect key="frame" x="8" y="52" width="398" height="60"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="ycY-2t-e8l" userLabel="Score Labels">
+                                        <rect key="frame" x="0.0" y="0.0" width="318" height="60"/>
+                                        <subviews>
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="⭐️ -000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGo-dE-ZuX">
+                                                <rect key="frame" x="0.0" y="0.0" width="155.5" height="60"/>
+                                                <gestureRecognizers/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="⭐️ -000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYv-9e-ohm">
+                                                <rect key="frame" x="162.5" y="0.0" width="155.5" height="60"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <variation key="heightClass=compact" axis="vertical"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="zZY-m9-mMw" appends="YES" id="UPM-x9-f8B"/>
+                                        </connections>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zYA-k8-g2V">
+                                        <rect key="frame" x="326" y="0.0" width="72" height="60"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <state key="normal" title="🃏00">
+                                            <color key="titleColor" systemColor="labelColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="drawThreeMoreCards:" destination="ksj-U4-28a" eventType="touchUpInside" id="t1L-5d-PDj"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mpn-WW-Tm8">
+                                        <rect key="frame" x="402" y="0.0" width="71" height="60"/>
+                                        <color key="backgroundColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <state key="normal" title="Hint">
+                                            <color key="titleColor" systemColor="tertiarySystemBackgroundColor"/>
+                                        </state>
+                                        <variation key="heightClass=regular" hidden="YES"/>
+                                        <connections>
+                                            <action selector="hintButtonTapped:" destination="ksj-U4-28a" eventType="touchUpInside" id="jrS-YC-pk0"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bw9-e8-LGC">
+                                        <rect key="frame" x="402" y="0.0" width="120" height="60"/>
+                                        <color key="backgroundColor" systemColor="labelColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="AAW-7R-Sbf"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <state key="normal" title="Reset">
+                                            <color key="titleColor" systemColor="tertiarySystemBackgroundColor"/>
+                                        </state>
+                                        <variation key="heightClass=regular" hidden="YES"/>
+                                        <connections>
+                                            <action selector="newGameButtonTapped:" destination="ksj-U4-28a" eventType="touchUpInside" id="lSq-4f-Dvp"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstItem="bw9-e8-LGC" firstAttribute="height" secondItem="mpn-WW-Tm8" secondAttribute="height" id="ZFP-JG-gAZ"/>
+                                    <constraint firstAttribute="width" constant="140" id="rpj-GT-ol2"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="rpj-GT-ol2"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact" axis="vertical">
+                                    <mask key="constraints">
+                                        <include reference="rpj-GT-ol2"/>
+                                    </mask>
+                                </variation>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Cds-6y-VU5" userLabel="Control buttons">
+                                <rect key="frame" x="8" y="794" width="398" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BgG-A7-Z43">
+                                        <rect key="frame" x="0.0" y="0.0" width="195" height="60"/>
+                                        <color key="backgroundColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <state key="normal" title="Hint">
+                                            <color key="titleColor" systemColor="tertiarySystemBackgroundColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="hintButtonTapped:" destination="ksj-U4-28a" eventType="touchUpInside" id="Py2-cR-fs5"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="53h-Nc-U5M">
+                                        <rect key="frame" x="203" y="0.0" width="195" height="60"/>
+                                        <color key="backgroundColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <state key="normal" title="Reset">
+                                            <color key="titleColor" systemColor="tertiarySystemBackgroundColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="newGameButtonTapped:" destination="ksj-U4-28a" eventType="touchUpInside" id="8pA-Nt-Nnh"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <variation key="heightClass=compact" hidden="YES"/>
+                            </stackView>
+                            <view contentMode="redraw" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="dDl-2o-6fJ" userLabel="Cards View" customClass="CardsGridView" customModule="CS193pGames" customModuleProvider="target">
+                                <rect key="frame" x="8" y="112" width="398" height="674"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="RME-Og-RjD"/>
+                        <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="Cds-6y-VU5" firstAttribute="centerX" secondItem="dDl-2o-6fJ" secondAttribute="centerX" id="37l-Nq-Iew"/>
+                            <constraint firstItem="QdN-12-KeD" firstAttribute="top" secondItem="RME-Og-RjD" secondAttribute="top" constant="8" id="CxP-tv-h1d"/>
+                            <constraint firstItem="RME-Og-RjD" firstAttribute="bottom" secondItem="dDl-2o-6fJ" secondAttribute="bottom" constant="8" id="EOU-yf-8NH"/>
+                            <constraint firstItem="RME-Og-RjD" firstAttribute="trailing" secondItem="dDl-2o-6fJ" secondAttribute="trailing" constant="8" id="GNl-1A-6e6"/>
+                            <constraint firstItem="RME-Og-RjD" firstAttribute="trailing" secondItem="QdN-12-KeD" secondAttribute="trailing" constant="8" id="Jbr-Vp-JuN"/>
+                            <constraint firstItem="dDl-2o-6fJ" firstAttribute="top" secondItem="QdN-12-KeD" secondAttribute="bottom" id="UWo-Rc-1qd"/>
+                            <constraint firstItem="RME-Og-RjD" firstAttribute="bottom" secondItem="QdN-12-KeD" secondAttribute="bottom" constant="8" id="VNR-fT-wde"/>
+                            <constraint firstItem="RME-Og-RjD" firstAttribute="bottom" secondItem="dDl-2o-6fJ" secondAttribute="bottom" constant="8" id="WIH-K3-iYf">
+                                <variation key="heightClass=compact" constant="8"/>
+                            </constraint>
+                            <constraint firstItem="Cds-6y-VU5" firstAttribute="centerX" secondItem="eY0-Yz-elI" secondAttribute="centerX" id="ZS5-B2-GqI"/>
+                            <constraint firstItem="RME-Og-RjD" firstAttribute="trailing" secondItem="dDl-2o-6fJ" secondAttribute="trailing" constant="8" id="gqS-RS-E5g"/>
+                            <constraint firstItem="Cds-6y-VU5" firstAttribute="width" secondItem="dDl-2o-6fJ" secondAttribute="width" id="idz-jb-CiK"/>
+                            <constraint firstItem="QdN-12-KeD" firstAttribute="leading" secondItem="RME-Og-RjD" secondAttribute="leading" constant="8" id="tHy-V3-4YL"/>
+                            <constraint firstItem="Cds-6y-VU5" firstAttribute="bottom" secondItem="RME-Og-RjD" secondAttribute="bottom" constant="-8" id="teu-pw-Jfj"/>
+                            <constraint firstItem="dDl-2o-6fJ" firstAttribute="leading" secondItem="QdN-12-KeD" secondAttribute="trailing" constant="8" id="wKg-Yg-gIW"/>
+                            <constraint firstItem="Cds-6y-VU5" firstAttribute="top" secondItem="dDl-2o-6fJ" secondAttribute="bottom" constant="8" symbolic="YES" id="wXN-KT-q6g"/>
+                            <constraint firstItem="dDl-2o-6fJ" firstAttribute="top" secondItem="RME-Og-RjD" secondAttribute="top" constant="8" id="xb5-Na-PVD"/>
+                            <constraint firstItem="dDl-2o-6fJ" firstAttribute="leading" secondItem="RME-Og-RjD" secondAttribute="leading" constant="8" id="yvh-UA-Jw3"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="EOU-yf-8NH"/>
+                                <exclude reference="VNR-fT-wde"/>
+                                <exclude reference="WIH-K3-iYf"/>
+                                <exclude reference="gqS-RS-E5g"/>
+                                <exclude reference="wKg-Yg-gIW"/>
+                                <exclude reference="xb5-Na-PVD"/>
+                                <exclude reference="ZS5-B2-GqI"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="EOU-yf-8NH"/>
+                                <exclude reference="GNl-1A-6e6"/>
+                                <exclude reference="Jbr-Vp-JuN"/>
+                                <include reference="VNR-fT-wde"/>
+                                <include reference="WIH-K3-iYf"/>
+                                <include reference="gqS-RS-E5g"/>
+                                <include reference="CxP-tv-h1d"/>
+                                <exclude reference="UWo-Rc-1qd"/>
+                                <include reference="wKg-Yg-gIW"/>
+                                <include reference="xb5-Na-PVD"/>
+                                <exclude reference="yvh-UA-Jw3"/>
+                                <exclude reference="37l-Nq-Iew"/>
+                                <include reference="ZS5-B2-GqI"/>
+                                <exclude reference="idz-jb-CiK"/>
+                                <exclude reference="wXN-KT-q6g"/>
+                            </mask>
+                        </variation>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="3tP-jo-dvB" appends="YES" id="TE2-WJ-Y5w"/>
+                            <outletCollection property="gestureRecognizers" destination="ZzC-H1-u4h" appends="YES" id="IYU-Fr-GpB"/>
+                        </connections>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Set" image="link" catalog="system" id="9LO-F0-5GU"/>
+                    <connections>
+                        <outlet property="barHintButton" destination="mpn-WW-Tm8" id="yOZ-ef-mod"/>
+                        <outlet property="barResetButton" destination="bw9-e8-LGC" id="xcr-If-ukV"/>
+                        <outlet property="cardsGridView" destination="dDl-2o-6fJ" id="lKr-RQ-mvc"/>
+                        <outlet property="deckButton" destination="zYA-k8-g2V" id="dm4-Wa-f6v"/>
+                        <outlet property="firstPlayerScoreLabel" destination="DGo-dE-ZuX" id="lxs-Jd-H3b"/>
+                        <outlet property="hintButton" destination="BgG-A7-Z43" id="ckh-et-RUh"/>
+                        <outlet property="infoStackView" destination="QdN-12-KeD" id="7fX-Zp-juE"/>
+                        <outlet property="resetButton" destination="53h-Nc-U5M" id="Bfv-GQ-Qnz"/>
+                        <outlet property="secondPlayersScoreLabel" destination="bYv-9e-ohm" id="DpM-Ti-t9m"/>
+                        <outlet property="swipeDownGestureRecognizer" destination="3tP-jo-dvB" id="qd6-P7-QF2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oaP-aG-fgp" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="down" id="3tP-jo-dvB">
+                    <connections>
+                        <action selector="drawThreeMoreCards:" destination="ksj-U4-28a" id="tjM-3t-7ih"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <rotationGestureRecognizer id="ZzC-H1-u4h">
+                    <connections>
+                        <action selector="rotationGestureDetected:" destination="ksj-U4-28a" id="q18-91-rzh"/>
+                    </connections>
+                </rotationGestureRecognizer>
+                <tapGestureRecognizer id="zZY-m9-mMw">
+                    <connections>
+                        <action selector="switchPlayerTapGestureRecognised:" destination="ksj-U4-28a" id="yOZ-6i-LiK"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2" y="-9"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="link" catalog="system" width="128" height="122"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="secondarySystemGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tertiarySystemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
