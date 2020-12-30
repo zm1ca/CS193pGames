@@ -11,7 +11,7 @@
 		4061014A259B476900D6CC6B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40610149259B476900D6CC6B /* SceneDelegate.swift */; };
 		40610151259B476B00D6CC6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40610150259B476B00D6CC6B /* Assets.xcassets */; };
 		40610154259B476B00D6CC6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40610152259B476B00D6CC6B /* LaunchScreen.storyboard */; };
-		40610167259B484E00D6CC6B /* ConcentrationThemeChooserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40610160259B484E00D6CC6B /* ConcentrationThemeChooserVC.swift */; };
+		40610167259B484E00D6CC6B /* ThemeChooserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40610160259B484E00D6CC6B /* ThemeChooserVC.swift */; };
 		40610168259B484E00D6CC6B /* ConcentrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40610161259B484E00D6CC6B /* ConcentrationVC.swift */; };
 		40610169259B484E00D6CC6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40610162259B484E00D6CC6B /* Main.storyboard */; };
 		4061016A259B484E00D6CC6B /* Concentration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40610164259B484E00D6CC6B /* Concentration.swift */; };
@@ -45,7 +45,7 @@
 		40610150259B476B00D6CC6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		40610153259B476B00D6CC6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		40610155259B476B00D6CC6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		40610160259B484E00D6CC6B /* ConcentrationThemeChooserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcentrationThemeChooserVC.swift; sourceTree = "<group>"; };
+		40610160259B484E00D6CC6B /* ThemeChooserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeChooserVC.swift; sourceTree = "<group>"; };
 		40610161259B484E00D6CC6B /* ConcentrationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcentrationVC.swift; sourceTree = "<group>"; };
 		40610162259B484E00D6CC6B /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		40610164259B484E00D6CC6B /* Concentration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Concentration.swift; sourceTree = "<group>"; };
@@ -125,7 +125,7 @@
 		4061015F259B484E00D6CC6B /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				40610160259B484E00D6CC6B /* ConcentrationThemeChooserVC.swift */,
+				40610160259B484E00D6CC6B /* ThemeChooserVC.swift */,
 				40610161259B484E00D6CC6B /* ConcentrationVC.swift */,
 			);
 			path = "View Controllers";
@@ -165,7 +165,8 @@
 			children = (
 				40B1E393259B54360070787E /* Set.storyboard */,
 				40B1E36A259B4B4A0070787E /* GameOfSetVC.swift */,
-				40B1E36F259B4B4A0070787E /* Models */,
+				40B1E36F259B4B4A0070787E /* Game Models */,
+				40B1E397259B5B610070787E /* UI Models */,
 				40B1E36C259B4B4A0070787E /* Views */,
 				40B1E381259B4B520070787E /* Extensions */,
 				40B1E36B259B4B4A0070787E /* Constants.swift */,
@@ -182,17 +183,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		40B1E36F259B4B4A0070787E /* Models */ = {
+		40B1E36F259B4B4A0070787E /* Game Models */ = {
 			isa = PBXGroup;
 			children = (
 				40B1E370259B4B4A0070787E /* Card.swift */,
-				40B1E371259B4B4A0070787E /* SetForTwoPlayers.swift */,
-				40B1E372259B4B4A0070787E /* Grid.swift */,
-				40B1E373259B4B4A0070787E /* GlowType.swift */,
-				40B1E374259B4B4A0070787E /* CardBehavior.swift */,
 				40B1E375259B4B4A0070787E /* GameOfSet.swift */,
+				40B1E371259B4B4A0070787E /* SetForTwoPlayers.swift */,
 			);
-			path = Models;
+			path = "Game Models";
 			sourceTree = "<group>";
 		};
 		40B1E381259B4B520070787E /* Extensions */ = {
@@ -206,6 +204,16 @@
 				40B1E387259B4B520070787E /* CGRect+Ext.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		40B1E397259B5B610070787E /* UI Models */ = {
+			isa = PBXGroup;
+			children = (
+				40B1E372259B4B4A0070787E /* Grid.swift */,
+				40B1E373259B4B4A0070787E /* GlowType.swift */,
+				40B1E374259B4B4A0070787E /* CardBehavior.swift */,
+			);
+			path = "UI Models";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,7 +304,7 @@
 				40B1E38A259B4B520070787E /* CGFloat+Ext.swift in Sources */,
 				40B1E376259B4B4A0070787E /* GameOfSetVC.swift in Sources */,
 				40B1E38D259B4B520070787E /* CGRect+Ext.swift in Sources */,
-				40610167259B484E00D6CC6B /* ConcentrationThemeChooserVC.swift in Sources */,
+				40610167259B484E00D6CC6B /* ThemeChooserVC.swift in Sources */,
 				4061016C259B484E00D6CC6B /* Theme.swift in Sources */,
 				40B1E378259B4B4A0070787E /* CardView.swift in Sources */,
 				40B1E38B259B4B520070787E /* Array+Ext.swift in Sources */,

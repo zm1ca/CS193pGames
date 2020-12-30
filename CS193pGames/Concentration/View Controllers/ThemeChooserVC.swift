@@ -1,5 +1,5 @@
 //
-//  ConcentrationThemeChooserVC.swift
+//  ThemeChooserVC.swift
 //  Concentration
 //
 //  Created by Źmicier Fiedčanka on 17.12.20.
@@ -7,13 +7,52 @@
 
 import UIKit
 
-class ConcentrationThemeChooserVC: UIViewController, UISplitViewControllerDelegate  {
+class ThemeChooserVC: UIViewController, UISplitViewControllerDelegate  {
     
     // FIX: Make it a simple table view. Stack view may not fit at small screens
     @IBOutlet weak var themesStackView: UIStackView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        addAButtonForEachThemeSample()
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+
+    
+    // MARK: - Managing SplitVC
+    var splitViewDetailConcentrationViewController: ConcentrationVC? {
+        return splitViewController?.viewControllers.last?.contents as? ConcentrationVC
+    }
+    
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        splitViewController?.delegate = self
+    }
+    
+    
+    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
+        return true
+    }
+
+    
+    // MARK: - Navigation
+    private var lastSeguedToConcentrationVC: ConcentrationVC?
+    
+    
+    private func addAButtonForEachThemeSample() {
         for theme in Theme.samples {
             let themeButton = UIButton()
             themeButton.setTitle(theme.name, for: .normal)
@@ -24,35 +63,6 @@ class ConcentrationThemeChooserVC: UIViewController, UISplitViewControllerDelega
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: animated)
-    }
-
-    // MARK: - Managing SplitVC
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        splitViewController?.delegate = self
-    }
-    
-    
-    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
-        return true
-    }
-    
- 
-    var splitViewDetailConcentrationViewController: ConcentrationVC? {
-        return splitViewController?.viewControllers.last?.contents as? ConcentrationVC
-    }
-
-    
-    // MARK: - Navigation
-    private var lastSeguedToConcentrationVC: ConcentrationVC?
     
     @objc func changeTheme(_ sender: Any) {
         if let cvc = splitViewDetailConcentrationViewController {

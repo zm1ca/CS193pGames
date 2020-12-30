@@ -25,7 +25,7 @@ struct AnimationConstants {
     static let numberOfSpins:       Double = 3.0
     static let singleSpinTime:      Double = 0.6
     static let cardFlipOverTime:    Double = 0.7
-    static let chaoticBouncingTime: Double = 1.5
+    static let chaoticBouncingTime: Double = totalSpinningTime
     static let cardEscapeTime:      Double = 1.0
     static let rearrangementTime:   Double = 0.7
     

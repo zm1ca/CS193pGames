@@ -104,11 +104,8 @@ class ConcentrationVC: UIViewController {
             let button  = visibleCardButtons[index]
             let card    = game.cards[index]
             if card.isFaceUp {
-//                let padding: CGFloat = 10
-//                let fontSize = min(button.frame.width, button.frame.height) - padding * 2
-//                button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body).withSize(fontSize)
                 button.setTitle(emoji(for: card), for: .normal)
-                button.backgroundColor = cardBackColor.withAlphaComponent(0.5) // I need lighter color, not transparent
+                button.backgroundColor = cardBackColor.withAlphaComponent(0.5)
             } else {
                 button.setTitle("", for: .normal)
                 button.backgroundColor = card.isMatched ? #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0) : cardBackColor
