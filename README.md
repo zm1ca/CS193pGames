@@ -1,15 +1,15 @@
 # CS193pGames
 Combined Set and Concentration games for Stanford CS193p (Fall 2017) [course](https://www.youtube.com/playlist?list=PLPA-ayBrweUzGFmkT_W65z64MoGnKRZMq).
-![gif](https://github.com/zm1ca/CS193pGames/blob/showcase/showcareV1-lowres.gif)
+![gif](https://github.com/zm1ca/CS193pGames/blob/main/showcareV1-lowres.gif)
 
-[High resolution showcase](https://github.com/zm1ca/CS193pGames/blob/showcase/showcaseV1.gif)
+[High resolution showcase](https://github.com/zm1ca/CS193pGames/blob/main/showcaseV1.gif)
 
 ***
 ## Concentration
 [Concentration](https://en.wikipedia.org/wiki/Concentration_(card_game)), also known as Match Match, Match Up, Memory, Pelmanism, Shinkei-suijaku, Pexeso or simply Pairs, is a card game in which all of the cards are laid face down on a surface and two cards are flipped face up over each turn. 
 The object of the game is to turn over pairs of matching cards.
 
-This particular implementation of COncentration has those major features (mostly as in [Programming Assignment One](https://github.com/zm1ca/CS193pGames/blob/showcase/Programming%20Project%201_%20Concentration.pdf), including extra credit):
+This particular implementation of COncentration has those major features (mostly as in [Programming Assignment One](https://github.com/zm1ca/CS193pGames/blob/main/Programming%20Project%201_%20Concentration.pdf), including extra credit):
 * Concentration game itself
 * Themes set (consisting of emoji-set and colors), to increase game's replayability
 * Theme is shown in the navigation bar
@@ -24,7 +24,7 @@ This particular implementation of COncentration has those major features (mostly
 ## Set
 [Set](https://en.wikipedia.org/wiki/Set_(card_game)) is a real-time card game designed by Marsha Falco in 1974. The deck consists of 81 unique cards that vary in four features across three possibilities for each kind of feature: number of shapes, shape, shading, and color.
 
-This particular implementation of Set has those major features (mostly as in Programming Assignments [two](https://github.com/zm1ca/CS193pGames/blob/showcase/Programming%20Project%202%20Set.pdf), [three](https://github.com/zm1ca/CS193pGames/blob/showcase/Programming%20Project%203_%20Graphical%20Set.pdf) and [four](https://github.com/zm1ca/CS193pGames/blob/showcase/Programming%20Project%204_%20Animated%20Set.pdf), including extra credits):
+This particular implementation of Set has those major features (mostly as in Programming Assignments [two](https://github.com/zm1ca/CS193pGames/blob/main/Programming%20Project%202%20Set.pdf), [three](https://github.com/zm1ca/CS193pGames/blob/main/Programming%20Project%203_%20Graphical%20Set.pdf) and [four](https://github.com/zm1ca/CS193pGames/blob/main/Programming%20Project%204_%20Animated%20Set.pdf), including extra credits):
 * Game of Set itself
 * Two-player mode (with a screen congratulating winner c:)
 * Hint mechanics (beware, since using this causes a penalty)
