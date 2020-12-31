@@ -26,10 +26,10 @@ struct Concentration {
     private var scoreMultiplier: Int {
         let pickTime = -latestPickTime!.timeIntervalSinceNow
         switch pickTime {
-        case 0..<0.25:  return 5
-        case 0.25..<1:  return 3
-        case 1..<5:     return 1
-        default:        return 0
+        case 0..<1:     return 4
+        case 1..<5:     return 3
+        case 5..<10:    return 2
+        default:        return 1
         }
     }
     
@@ -53,7 +53,7 @@ struct Concentration {
                 if cards[matchIndex] == cards[index] {
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched      = true
-                    score += 2 * scoreMultiplier
+                    score += 4 * scoreMultiplier
                 } else {
                     checkIfUserSeenCard(cards[index])
                     checkIfUserSeenCard(cards[matchIndex])
@@ -73,7 +73,7 @@ struct Concentration {
     
     mutating  private func checkIfUserSeenCard(_ card: ConcentrationCard) {
         if cardsWhichUserHaseAlreadySeen.contains(where: { $0 == card}) {
-            score -= 3
+            score -= 3 * scoreMultiplier
         } else {
             cardsWhichUserHaseAlreadySeen.append(card)
         }

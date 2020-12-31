@@ -101,19 +101,45 @@ class ConcentrationVC: UIViewController {
     // MARK: - Dealing with UI
     private func updateViewFromModel() {
         for index in visibleCardButtons.indices {
-            let button  = visibleCardButtons[index]
-            let card    = game.cards[index]
-            if card.isFaceUp {
-                button.setTitle(emoji(for: card), for: .normal)
-                button.backgroundColor = cardBackColor.withAlphaComponent(0.5)
-            } else {
-                button.setTitle("", for: .normal)
-                button.backgroundColor = card.isMatched ? #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0) : cardBackColor
-            }
-            
+            updateAppearance(for: visibleCardButtons[index], with: game.cards[index])
+        }
+        
+        scoreLabel.text = (traitCollection.verticalSizeClass == .compact)
+            ? "Score\n\(game.score)"
+            : "Score: \(game.score)"
+    }
+    
+    
+    private func updateAppearance(for button: UIButton, with card: ConcentrationCard) {
+        var newTitle: String
+        var newColor: UIColor
+        
+        if card.isFaceUp {
+            newTitle = emoji(for: card)
+            newColor = cardBackColor.withAlphaComponent(0.5)
+        } else {
+            newTitle = ""
+            newColor = card.isMatched ? .clear : cardBackColor
+        }
+        
+        let action = {
+            button.setTitle(newTitle, for: .normal)
+            button.backgroundColor = newColor
             button.isEnabled = !card.isFaceUp && !card.isMatched
         }
-        scoreLabel.text = traitCollection.verticalSizeClass == .compact ? "Score\n\(game.score)" : "Score: \(game.score)"
+        
+        if newTitle != button.currentTitle {
+            UIView.transition(
+                with: button,
+                duration: 0.6,
+                options: [newColor == .clear
+                            ? .transitionCrossDissolve
+                            : .transitionFlipFromLeft]) {
+                action()
+            }
+        } else {
+            action()
+        }
     }
     
     
