@@ -10,81 +10,97 @@ import UIKit
 
 class CardView: UIView {
     
-    var card: Card! { didSet { setNeedsDisplay(); setNeedsLayout() }}
+    var card: Card!
+    //TODO: 1. Make shapeDrawerWithOffsetByY be just shape: UIBezierPath (current problem is with offsets)
+    //      2. View shouldn't contain a model object. Make card be a computed, not a stored property (or delegate that task to ViewController). 
+    
+    var shapeDrawerWithOffsetByY: ((CGFloat) -> UIBezierPath)? {
+        didSet { setNeedsDisplay(); setNeedsLayout() }
+    }
+    var shapeColor:     UIColor!     { didSet { setNeedsDisplay(); setNeedsLayout() }}
+    var numberOfShapes: Int!         { didSet { setNeedsDisplay(); setNeedsLayout() }}
+    var shading:        ShadingType! { didSet { setNeedsDisplay(); setNeedsLayout() }}
+    var isFaceUp = false             { didSet { setNeedsDisplay() }}
+    
+    enum ShadingType { case fill, crate, clear }
+    
     var glowColor: UIColor! {
         didSet {
             isUserInteractionEnabled = [GlowType.selected.color, GlowType.usual.color].contains(glowColor)
             setNeedsDisplay()
         }
     }
-    var isFaceUp = false { didSet { setNeedsDisplay() }}
+    
     
     convenience init(frame: CGRect, card: Card) {
         self.init(frame: frame)
-        self.card = card
         backgroundColor = .clear
         clipsToBounds = true
+        
+        self.card = card // to be removed (see TODO)
+        
+        switch card.shape {
+        case 0:  shapeDrawerWithOffsetByY = bezierRoundedRectOffsetYBy(_:)
+        case 1:  shapeDrawerWithOffsetByY = bezierRhombusOffsetYBy(_:)
+        case 2:  shapeDrawerWithOffsetByY = bezierWeirdOffsetYBy(_:)
+        default: shapeDrawerWithOffsetByY = nil
+        }
+
+        switch card.color {
+        case 0:  self.shapeColor = UIColor.appColor(.shapeRed)!
+        case 1:  self.shapeColor = UIColor.appColor(.shapeGreen)!
+        case 2:  self.shapeColor = UIColor.appColor(.shapeBlue)!
+        default: self.shapeColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
+        }
+        
+        self.numberOfShapes = card.numberOfShapes + 1
+        
+        switch card.shading {
+        case 0:  self.shading = .fill
+        case 1:  self.shading = .crate
+        case 2:  self.shading = .clear
+        default: self.shading = .none
+        }
     }
     
     
     override func draw(_ rect: CGRect) {
-        //Setting background
         drawBezierBackgroundRoundedRect(at: bounds.zoom(by: SizeRatio.zoomOfCardBackgroundToBounds))
+        guard isFaceUp else { return }
         
-        if isFaceUp {
-            //Setting Color
-            var color: UIColor
-            switch card.color {
-            case 0: color = UIColor.appColor(.shapeRed)!
-            case 1: color = UIColor.appColor(.shapeGreen)!
-            case 2: color = UIColor.appColor(.shapeBlue)!
-            default: color = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
-            }
-            color.setStroke()
-            color.setFill()
-
-            
-            //Choosing Shape
-            let shapeDrawer: ((CGFloat) -> UIBezierPath)?
-            switch card.shape {
-            case 0: shapeDrawer = bezierRoundedRect(_:)
-            case 1: shapeDrawer = bezierRhombus(_:)
-            case 2: shapeDrawer = bezierWeird(_:)
-            default: shapeDrawer = nil
-            }
-            
-            
-            //Applying number of shapes
-            let shape = UIBezierPath()
-            switch card.numberOfShapes {
-            case 0: shape.append(shapeDrawer!(bounds.midY))
-            case 1:
-                let offsetToMiddleOfShape = (spacing + shapeHeight) / 2
-                shape.append(shapeDrawer!(bounds.midY - offsetToMiddleOfShape))
-                shape.append(shapeDrawer!(bounds.midY + offsetToMiddleOfShape))
-            case 2:
-                let offsetToMiddleOfShape = (spacing + shapeHeight)
-                shape.append(shapeDrawer!(bounds.midY - offsetToMiddleOfShape))
-                shape.append(shapeDrawer!(bounds.midY))
-                shape.append(shapeDrawer!(bounds.midY + offsetToMiddleOfShape))
-            default: break
-            }
-            
-            shape.lineWidth = 3
-            shape.addClip()
-            shape.stroke()
-            
-            //Setting Shading
-            switch card.shading {
-            case 0: shape.fill()
-            case 1: bezierCrateLines().stroke()
-            default: break
-            }
+        shapeColor.setStroke()
+        shapeColor.setFill()
+        
+        let result = UIBezierPath()
+        switch numberOfShapes {
+        case 1: result.append(shapeDrawerWithOffsetByY!(bounds.midY))
+        case 2:
+            let offsetToMiddleOfShape = (spacing + shapeHeight) / 2
+            result.append(shapeDrawerWithOffsetByY!(bounds.midY - offsetToMiddleOfShape))
+            result.append(shapeDrawerWithOffsetByY!(bounds.midY + offsetToMiddleOfShape))
+        case 3:
+            let offsetToMiddleOfShape = (spacing + shapeHeight)
+            result.append(shapeDrawerWithOffsetByY!(bounds.midY - offsetToMiddleOfShape))
+            result.append(shapeDrawerWithOffsetByY!(bounds.midY))
+            result.append(shapeDrawerWithOffsetByY!(bounds.midY + offsetToMiddleOfShape))
+        default: return
+        }
+        
+        result.lineWidth = 3
+        result.addClip()
+        result.stroke()
+        
+        switch shading {
+        case .fill:     result.fill()
+        case .crate:    bezierCrateLines().stroke()
+        case .clear:    break
+        case .none:     return
         }
     }
 }
 
 
+//MARK:- Drawing shapes
 extension CardView {
     
     //MARK: Bezier background
@@ -102,12 +118,12 @@ extension CardView {
     
     
     //MARK: Bezier shapes
-    private func bezierRoundedRect(_ offsetY: CGFloat) -> UIBezierPath {
+    private func bezierRoundedRectOffsetYBy(_ offsetY: CGFloat) -> UIBezierPath {
         return UIBezierPath(roundedRect: CGRect(x: insetX, y: offsetY - shapeHeight / 2, width: shapeWidth, height: shapeHeight), cornerRadius: roundedRectShapeCornerRadius)
     }
     
     
-    private func bezierRhombus(_ offsetY: CGFloat) -> UIBezierPath {
+    private func bezierRhombusOffsetYBy(_ offsetY: CGFloat) -> UIBezierPath {
         let rhombus = UIBezierPath()
         rhombus.move(to: CGPoint(x: insetX, y: offsetY))
         
@@ -125,7 +141,7 @@ extension CardView {
     }
     
     
-    private func bezierWeird(_ offsetY: CGFloat) -> UIBezierPath {
+    private func bezierWeirdOffsetYBy(_ offsetY: CGFloat) -> UIBezierPath {
         let weird = UIBezierPath()
         let startPoint = CGPoint(x: insetX, y: offsetY)
         weird.move(to: startPoint)
