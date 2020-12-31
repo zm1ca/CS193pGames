@@ -129,14 +129,18 @@ class ConcentrationVC: UIViewController {
         }
         
         if newTitle != button.currentTitle {
-            UIView.transition(
-                with: button,
-                duration: 0.6,
-                options: [newColor == .clear
-                            ? .transitionCrossDissolve
-                            : .transitionFlipFromLeft]) {
-                action()
+            var options: UIView.AnimationOptions
+            switch newColor {
+            case .clear:
+                options = .transitionCrossDissolve
+            case cardBackColor:
+                options = .transitionFlipFromRight
+            case cardBackColor.withAlphaComponent(0.5):
+                options = .transitionFlipFromLeft
+            default: options = []
             }
+            
+            UIView.transition(with: button, duration: 0.6, options: options) { action() }
         } else {
             action()
         }
